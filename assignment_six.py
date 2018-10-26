@@ -10,13 +10,14 @@ def play():
 
 
 def get_word():
-    word = ["harry", "ron", "hermione", "ginny", "fred", "neville", "draco"]
+    my_file = open("wordfile.txt", "r")
+    word = my_file.readlines()
+    my_file.close()
     my_word = random.choice(word)
     return my_word
 
 
 def main():
-    get_word()
     answer = get_word()
     word = []
     attempts = 6
@@ -29,6 +30,7 @@ def main():
             break
         print("You have",  attempts,  "remaining")
         letter = input("Please guess a letter:")
+        letters_guessed.append(letter)
         if letter in answer:
             for x in range(len(answer)):
                 if letter == answer[x]:
@@ -37,10 +39,12 @@ def main():
             attempts = attempts - 1
             print("That letter is not in the word")
         print(word)
-        print(letters_guessed)
-
-        if answer == word:
-            print("You solved it!!!")
+        print("Letters Guessed", letters_guessed)
+    if attempts == 0:
+        print("You lose :( Try again")
+        print(answer)
+    else:
+        print("You solved it!!!")
 
 
 main()
