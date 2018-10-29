@@ -1,3 +1,8 @@
+# Chad Scott
+# 10/29/18
+# This program is a Wheel Of Fortune game that has the user guess letters and gets them to guess the correct word
+
+
 import random
 
 
@@ -10,10 +15,15 @@ def play():
 
 
 def get_word():
+    """
+    This function gets a random word from a list of words and displays it in blanks when the program is run
+    :return:
+    """
     my_file = open("wordfile.txt", "r")
     word = my_file.readlines()
     my_file.close()
     my_word = random.choice(word)
+    my_word = my_word[:-1]
     return my_word
 
 
